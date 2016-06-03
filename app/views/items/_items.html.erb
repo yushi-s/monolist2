@@ -15,13 +15,20 @@
           <p class="title">
             <%= link_to item['itemName'], item['itemUrl'] %>
           </p>
+          </p>
         </div>
         <div class="action clearfix">
-          <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Want") ,
-                      :class => "btn-want btn btn-danger btn-sm want",
-                      :item_code => "want-#{item['itemCode']}",
-                      :remote => true,
-                      :method => :post %>
+          <% if current_user.want? item %>
+            <%= render 'items/unwant' , item: item %>
+          <% else %>
+            <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Want") ,
+                        :class => "btn-want btn btn-danger btn-sm want",
+                        :item_code => "want-#{item['itemCode']}",
+                        :remote => true,
+                        :method => :post,
+                        item: item %>
+          <% end %>
+
           <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Have") ,
                       :class => "btn-have btn btn-warning btn-sm have",
                       :item_code => "have-#{item['itemCode']}",
