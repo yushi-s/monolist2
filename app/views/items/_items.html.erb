@@ -4,11 +4,7 @@
       <div class="item-box">
         <div class="image">
           <div class="img-wrap">
-            <% if item['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', '').present? %>
-              <%= image_tag(item['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', '') , alt: item['itemName']) %>
-            <% else %>
-              <%= image_tag("no-image.png" , alt: item['itemName']) %>
-            <% end %>
+            <%= rakuten_image_tag item %>
           </div>
         </div>
         <div class="detail">
@@ -25,15 +21,18 @@
                         :class => "btn-want btn btn-danger btn-sm want",
                         :item_code => "want-#{item['itemCode']}",
                         :remote => true,
-                        :method => :post,
-                        item: item %>
+                        :method => :post %>
           <% end %>
 
-          <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Have") ,
-                      :class => "btn-have btn btn-warning btn-sm have",
-                      :item_code => "have-#{item['itemCode']}",
-                      :remote => true,
-                      :method => :post %>
+          <% if current_user.have? item %>
+            <%= render 'items/unhave' , item: item %>
+          <% else %>
+            <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Have") ,
+                        :class => "btn-have btn btn-warning btn-sm have",
+                        :item_code => "have-#{item['itemCode']}",
+                        :remote => true,
+                        :method => :post %>
+          <% end %>
         </div>
       </div>
     <% end %>
