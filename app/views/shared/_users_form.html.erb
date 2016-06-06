@@ -1,0 +1,5 @@
+<% item.each do |user| %>
+  <%= link_to user_path(user)  do%>
+    <%= gravatar_for @user, size: 30 %>
+  <% end %>
+<% end %>
