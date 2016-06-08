@@ -57,6 +57,13 @@ header {
   }
 }
 
+li.dh {
+  display: inline-block;
+}
+button.btn {
+  margin-top: 1.5rem;
+}
+
 @media (max-width: 768px) {
   .navbar-header {
     margin-left: 15px !important;
