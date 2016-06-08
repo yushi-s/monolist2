@@ -8,6 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
+
           </button>
           <h1 class="logo">
             <%= link_to "MONOLIST", root_path, class: "navbar-brand" %>
@@ -20,20 +21,34 @@
               <li><%= link_to "新規登録", signup_path %></li>
               <li><%= link_to "ログイン", login_path %></li>
             <% else %>
-              <li>
-                <%= link_to new_item_path do %>
+              <li class="dh">
+                <%= link_to new_item_path do  %>
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                   アイテムを追加
                 <% end %>
               </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <li class="dropdown dh">
+                <button class="btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                  ランキング
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to "Haveランキング", ranking_have_path %>
+                  </li>
+                  <li>
+                    <%= link_to "Wantランキング", ranking_want_path %>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown dh">
+                <button class="btn btn-default" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="gravatar">
                     <%= gravatar_for current_user , size: 20 %>
                   </span>
                   <%= current_user.name %>
                   <span class="caret"></span>
-                </a>
+                </button>
                 <ul class="dropdown-menu">
                   <li>
                     <%= link_to "プロフィール" , current_user  %>

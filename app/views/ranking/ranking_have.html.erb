@@ -1,0 +1,38 @@
+<% content_for :head do %>
+<title>Haveのランキング</title>
+<meta name="description" content="Haveの多い商品ランキングです。">
+<% end %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="page_title col-sm-offset-3">
+      <h1>Haveランキング</h1>
+    </div>
+    <div class="container col-sm-offset-3">
+      <% if @haves.any? %>
+        <% @haves.each.with_index(1) do |ranking, index| %>
+        <% @item = Item.find(ranking[0]) %>
+        <div class="row">
+        <div class="ranking_items">
+          <div class="item_item col-sm-3">
+            <div class="ranking_number ranking-<%= index %>">
+              <%= index %>位
+            </div>
+            <div class="item_img">
+              <%= link_to image_tag(@item.medium_image), item_path(@item) %>
+            </div>
+          </div>
+          <div class="item_title col-sm-9">
+            <%= link_to @item.title, item_path(@item) %><br>
+            Have人数：<%= ranking[1] %>人<br><br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><%= link_to '楽天の商品ページへ', @item.detail_page_url, :target => "_blank" %>
+          </div>
+        </div>
+        </div>
+        <% end %>
+      <% else %>
+        <h3>まだランキングはありません</h3>
+      <% end %>
+    </div>
+  </div>
+</div>

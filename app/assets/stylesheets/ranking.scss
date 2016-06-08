@@ -1,0 +1,20 @@
+div {
+  .page_title {
+    padding: 4rem 0;
+    }
+  .container {
+    padding-top: 2rem;
+    .row {
+      .item_item {
+        padding-top: 2.5rem;
+        .ranking_number {
+          font-size: 1.5rem;
+          padding-bottom: 0.5rem;
+        }
+      }
+      .item_title {
+        padding-top: 5rem;
+      }
+    }
+  }
+}
